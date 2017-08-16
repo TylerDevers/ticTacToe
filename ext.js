@@ -1,7 +1,14 @@
-var buttons = document.getElementsByTagName('a');
+var buttonsIndex, gameOn, user, computer;
 
-function clicked(id) {	
-	console.log(buttons[id]);
+buttonsIndex = document.getElementsByTagName('a');
+gameOn = false;
+user = 'x';
+computer = 'o';
+
+//changes the game spaces to x and y values.
+function clicked(text) {	
+	text.innerHTML = "x";
+	console.log(text);
 }
 
 console.log('loaded');
