@@ -31,3 +31,11 @@ function start(text) {
 		}
 }
 console.log('loaded');
+
+/* TODO
+ * make x or o selectable at start
+ * make game reset after win condition
+ * create game logic
+ * make turn automatically switch after move
+ * check for win
+ */
