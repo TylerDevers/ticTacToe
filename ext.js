@@ -39,3 +39,27 @@ console.log('loaded');
  * make turn automatically switch after move
  * check for win
  */
+
+/* sudo code
+ * if (game has not started) {
+ * 	user selects character
+ * 	user starts game
+ * }
+ * if (game has started) {
+ * 	allow moves to be made
+ * 	allow game to be reset
+ * }
+ * if (move has been made) {
+ * 	switch turn to computer/user
+ * 	check for win condition
+ * 	check for draw
+ * }
+ * if (win condition) {
+ * 	stop game, congratulate(or not)
+ * 	start new game after 5 seconds
+ * }
+ * if (game a draw) {
+ * 	stop game, give draw message
+ * 	start new game after 5 seconds
+ * }
+ */
