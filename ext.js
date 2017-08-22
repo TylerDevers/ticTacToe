@@ -1,4 +1,4 @@
-var buttonsIndex, gameOn, user, computer, turn;
+var buttonsIndex, gameOn, user, computer, turn, lastMoveWas;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
@@ -13,6 +13,7 @@ function start(text) {
 				buttonsIndex[i].innerHTML = "^";
 			}
 			classSwitchTo.className = "btn btn-default";
+			lastMoveWas = undefined;
 			gameOn = false;
 		} else if (!gameOn) {
 			text.innerHTML = "Reset";
@@ -24,13 +25,31 @@ function start(text) {
 //changes the game tiles to x and y values.
 function clicked(text) {	
 	if (gameOn){
-		text.innerHTML = "x";
+			if (lastMoveWas == undefined) {
+				lastMoveWas = user;
+				text.innerHTML = user;
+			} else if (lastMoveWas == user && lastMoveWas == "x") {
+				text.innerHTML = "x";
+				console.log(lastMoveWas + " user");
+				lastMoveWas = "x";
+			} else if (lastMoveWas == user && lastMoveWas == "o") {
+				lastMoveWas = "o";
+				text.innerHTML = "o";
+				console.log(lastMoveWas + " user");
+			}else if (lastMoveWas != user && lastMoveWas == "x") {
+				lastMoveWas = "x";
+				text.innerHTML = "x";
+				console.log(lastMoveWas + " comp");
+			} else if (lastMoveWas != user && lastMoveWas == "o") {
+				lastMoveWas = "o";
+				text.innerHTML = "o";
+				console.log(lastMoveWas + " comp");
+			}
 	}
 }
 console.log('loaded');
 
 /* TODO
- * make x or o selectable at start
  * make game reset after win condition
  * create game logic
  * make turn automatically switch after move
