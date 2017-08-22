@@ -2,33 +2,30 @@ var buttonsIndex, gameOn, user, computer, turn;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
-user = 'x';
-computer = 'o';
-turn = "x";
-
-
-//changes the game spaces to x and y values.
-function clicked(text) {	
-	if (gameOn){
-		text.innerHTML = "x";
-	}
-}
 
 function start(text) {
-		var classSwitch = document.getElementById("start");
+		user = document.querySelector('#userChar').value;
+		var classSwitchTo = document.getElementById("start");
 		if (gameOn) {
 			text.innerHTML = "Start";
 			for (var i = 1; i<buttonsIndex.length; i++) { 
 				//starts at index 1 to prevent start button from changing.
 				buttonsIndex[i].innerHTML = "^";
 			}
-			classSwitch.className = "btn btn-default";
+			classSwitchTo.className = "btn btn-default";
 			gameOn = false;
 		} else if (!gameOn) {
 			text.innerHTML = "Reset";
-			classSwitch.className = "btn btn-warning";
+			classSwitchTo.className = "btn btn-warning";
 			gameOn = true;	
 		}
+}
+
+//changes the game tiles to x and y values.
+function clicked(text) {	
+	if (gameOn){
+		text.innerHTML = "x";
+	}
 }
 console.log('loaded');
 
@@ -46,6 +43,8 @@ console.log('loaded');
  * 	user starts game
  * }
  * if (game has started) {
+ * 	read users character selection
+ * 	set user and computer var appropriately
  * 	allow moves to be made
  * 	allow game to be reset
  * }
