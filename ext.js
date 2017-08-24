@@ -1,10 +1,10 @@
-var buttonsIndex, gameOn, user, computer, turn, lastMoveWas;
+var buttonsIndex, gameOn, user, computer, turn, lastMove;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
 
 function start(text) {
-		user = document.querySelector('#userChar').value;
+		user = document.querySelector('#xOrO').value;
 		var classSwitchTo = document.getElementById("start");
 		if (gameOn) {
 			text.innerHTML = "Start";
@@ -13,7 +13,7 @@ function start(text) {
 				buttonsIndex[i].innerHTML = "^";
 			}
 			classSwitchTo.className = "btn btn-default";
-			lastMoveWas = undefined;
+			lastMove = undefined;
 			gameOn = false;
 		} else if (!gameOn) {
 			text.innerHTML = "Reset";
@@ -25,31 +25,33 @@ function start(text) {
 //changes the game tiles to x and y values.
 function clicked(text) {	
 	if (gameOn){
-			if (lastMoveWas == undefined) {
-				lastMoveWas = user;
+			if (lastMove == undefined) {
+				lastMove = user;
 				text.innerHTML = user;
-			} else if (lastMoveWas == user && lastMoveWas == "x") {
-				text.innerHTML = "x";
-				console.log(lastMoveWas + " user");
-				lastMoveWas = "x";
-			} else if (lastMoveWas == user && lastMoveWas == "o") {
-				lastMoveWas = "o";
+			} else if (lastMove == user && lastMove == "x") {
 				text.innerHTML = "o";
-				console.log(lastMoveWas + " user");
-			}else if (lastMoveWas != user && lastMoveWas == "x") {
-				lastMoveWas = "x";
+				console.log(lastMove + " user");
+				lastMove = "o";
+			} else if (lastMove == user && lastMove == "o") {
 				text.innerHTML = "x";
-				console.log(lastMoveWas + " comp");
-			} else if (lastMoveWas != user && lastMoveWas == "o") {
-				lastMoveWas = "o";
+				console.log(lastMove + " user");
+				lastMove = "x";
+			}else if (lastMove != user && lastMove == "x") {
 				text.innerHTML = "o";
-				console.log(lastMoveWas + " comp");
+				console.log(lastMove + " comp");
+				lastMove = "o";
+			} else if (lastMove != user && lastMove == "o") {
+				text.innerHTML = "x";
+				console.log(lastMove + " comp");
+				lastMove = "x";
 			}
 	}
 }
 console.log('loaded');
 
 /* TODO
+ * clean up clicked(), use other functions for player() comp() to make it readable.
+ * add alert to clicked, if game is not on when tiles are clicked. alert 
  * make game reset after win condition
  * create game logic
  * make turn automatically switch after move
