@@ -7,6 +7,7 @@ function start(text) {
 		user = document.querySelector('#xOrO').value;
 		var classSwitchTo = document.getElementById("start");
 		if (gameOn) {
+			//reset game space
 			text.innerHTML = "Start";
 			for (var i = 1; i<buttonsIndex.length; i++) { 
 				//starts at index 1 to prevent start button from changing.
@@ -16,6 +17,7 @@ function start(text) {
 			lastMove = undefined;
 			gameOn = false;
 		} else if (!gameOn) {
+			//begins game, allows for moves
 			text.innerHTML = "Reset";
 			classSwitchTo.className = "btn btn-warning";
 			gameOn = true;	
@@ -24,31 +26,23 @@ function start(text) {
 
 //changes the game tiles to x and y values.
 function clicked(text) {	
-	if (gameOn){
-			if (lastMove == undefined) {
-				lastMove = user;
-				text.innerHTML = user;
-			} else if (lastMove == user && lastMove == "x") {
-				text.innerHTML = "o";
-				console.log(lastMove + " user");
-				lastMove = "o";
-			} else if (lastMove == user && lastMove == "o") {
-				text.innerHTML = "x";
-				console.log(lastMove + " user");
-				lastMove = "x";
-			}else if (lastMove != user && lastMove == "x") {
-				text.innerHTML = "o";
-				console.log(lastMove + " comp");
-				lastMove = "o";
-			} else if (lastMove != user && lastMove == "o") {
-				text.innerHTML = "x";
-				console.log(lastMove + " comp");
-				lastMove = "x";
-			}
+	if (!gameOn){
+		alert("You Must click Start to begin");
 	}
 }
-console.log('loaded');
 
+
+function user() {
+	//called by clicked(). handles users move
+	
+}
+
+function computer() {
+	//called by clicked(). handles comp move
+	
+}
+
+console.log('loaded');
 /* TODO
  * clean up clicked(), use other functions for player() comp() to make it readable.
  * add alert to clicked, if game is not on when tiles are clicked. alert 
