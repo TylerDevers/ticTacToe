@@ -1,11 +1,19 @@
-var buttonsIndex, gameOn, user, computer, turn, lastMove;
+var buttonsIndex, gameOn, userChoice, compChoice, turn, lastMove;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
 
 function start(text) {
-		user = document.querySelector('#xOrO').value;
 		var classSwitchTo = document.getElementById("start");
+		userChoice = document.querySelector('#xOrO').value;
+		turn = "user";
+		
+		if (userChoice == "x") {
+			compChoice = "o";
+		} else {
+			compChoice = "x";
+		}
+		
 		if (gameOn) {
 			//reset game space
 			text.innerHTML = "Start";
@@ -28,18 +36,27 @@ function start(text) {
 function clicked(text) {	
 	if (!gameOn){
 		alert("You Must click Start to begin");
+	} else {
+		if (turn == "user") {
+			if (text.innerHTML == userChoice || text.innerHTML == compChoice) {
+					alert("That space is taken, please choose another.");
+			} else {
+				user(text);
+			}
+		} 
 	}
 }
 
 
-function user() {
+function user(box) {
 	//called by clicked(). handles users move
-	
+	box.innerHTML = userChoice;
+	console.log("user " + userChoice);
 }
 
 function computer() {
 	//called by clicked(). handles comp move
-	
+	console.log("computer " + compChoice);
 }
 
 console.log('loaded');
