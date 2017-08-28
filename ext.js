@@ -34,6 +34,7 @@ function start(text) {
 
 //changes the game tiles to x and y values.
 function clicked(text) {	
+	var newButtons = [];
 	if (!gameOn){
 		alert("You Must click Start to begin");
 	} else {
@@ -42,6 +43,8 @@ function clicked(text) {
 					alert("That space is taken, please choose another.");
 			} else {
 				user(text);
+				computer(text);
+				//use buttonsIndex to somehow determine the computers move.
 			}
 		} 
 	}
