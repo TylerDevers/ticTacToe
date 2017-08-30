@@ -52,27 +52,45 @@ function clicked(text) {
 function user(fillBox) {
 	//called by clicked(). handles users move
 	fillBox.innerHTML = userChoice;
+	win();
 }
 
 function computer() {
 	for (value in buttonsIndex) {
 		if (buttonsIndex[value].innerHTML == "^") {
-			console.log("it has the hat!");
+			//console.log("it has the hat!");
 			buttonsIndex[value].innerHTML = compChoice;
+			win();
 			break;
 		}		
 	}
-	
+}
+
+function win() {
+	//check for win condition
+	/*win condition: if the values match for buttonsIndex indices :
+	 * 	123, 456, 789, 147, 258, 369, 159, 357
+	 */
+	 var v1 = buttonsIndex[1].innerHTML,v2 = buttonsIndex[2].innerHTML,
+			v3 = buttonsIndex[3].innerHTML,v4 = buttonsIndex[4].innerHTML,
+			v5 = buttonsIndex[5].innerHTML,v6 = buttonsIndex[6].innerHTML,
+			v7 = buttonsIndex[7].innerHTML,v8 = buttonsIndex[8].innerHTML,
+			v9 = buttonsIndex[9].innerHTML;
+	 
+	 if ((v1 && v2 && v3) == ("x") || (v1 && v2 && v3) == ("o")) {
+			console.log('win found');
+	 } else {
+			console.log('win not found');
+	 }
+	 
 }
 
 console.log('loaded');
 /* TODO
+ * check for win
  * clean up clicked(), use functions for player() comp() to make it readable.
  *  
  * make game reset after win condition
- * create game logic
- * make turn automatically switch after move
- * check for win
  */
 
 /* sudo code
