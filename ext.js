@@ -77,13 +77,21 @@ function win() {
 			v7 = buttonsIndex[7].innerHTML,v8 = buttonsIndex[8].innerHTML,
 			v9 = buttonsIndex[9].innerHTML;
 	 
-		if ((v1 && v2 && v3) == userChoice || (v4 && v5 && v6) == userChoice) {
+		if (v1  == userChoice && v2  == userChoice && v3 == userChoice) {
 			console.log("You have won!");
-		} else if ((v7 && v8 && v9) == userChoice || (v1 && v4 && v7) == userChoice) {
+		} else if (v4 == userChoice && v5 == userChoice && v6 == userChoice) {
 			console.log("You have won!");
-		} else if ((v2 && v5 && v8) == userChoice || (v3 && v6 && v9) == userChoice) {
+		} else if (v7 == userChoice && v8 == userChoice && v9 == userChoice) {
 			console.log("You have won!");
-		} else if ((v1 && v5 && v9) == userChoice || (v3 && v5 && v7) == userChoice) {
+		} else if (v1 == userChoice && v4 == userChoice && v7 == userChoice) {
+			console.log("You have won!");
+		} else if (v2 == userChoice && v5 == userChoice && v8 == userChoice) {
+			console.log("You have won!");
+		} else if (v3 == userChoice && v6 == userChoice && v9 == userChoice) {
+			console.log("You have won!");
+		} else if (v1 == userChoice && v5 == userChoice && v9 == userChoice) {
+			console.log("You have won!");
+		} else if (v3 == userChoice && v5 == userChoice && v7 == userChoice) {
 			console.log("You have won!");
 		} 
 			
