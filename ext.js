@@ -77,11 +77,31 @@ function win() {
 			v7 = buttonsIndex[7].innerHTML,v8 = buttonsIndex[8].innerHTML,
 			v9 = buttonsIndex[9].innerHTML;
 	 
-	 if ((v1 && v2 && v3) == ("x") || (v1 && v2 && v3) == ("o")) {
+		if ((v1 && v2 && v3) == userChoice || (v4 && v5 && v6) == userChoice) {
+			console.log("You have won!");
+		} else if ((v7 && v8 && v9) == userChoice || (v1 && v4 && v7) == userChoice) {
+			console.log("You have won!");
+		} else if ((v2 && v5 && v8) == userChoice || (v3 && v6 && v9) == userChoice) {
+			console.log("You have won!");
+		} else if ((v1 && v5 && v9) == userChoice || (v3 && v5 && v7) == userChoice) {
+			console.log("You have won!");
+		} 
+			
+	
+				
+	 /*if (v1 && v2 && v3) == ("x") || (v1 && v2 && v3) == ("o")) { 
+			(((v4 && v5 && v6) == ("x")) || ((v4 && v5 && v6) == ("o"))) ||
+			(((v7 && v8 && v9) == ("x")) || ((v7 && v8 && v9) == ("o"))) ||
+			(((v1 && v4 && v7) == ("x")) || ((v1 && v4 && v7) == ("o"))) ||
+			(((v2 && v5 && v8) == ("x")) || ((v2 && v5 && v8) == ("o"))) ||
+			(((v3 && v6 && v9) == ("x")) || ((v3 && v6 && v9) == ("o"))) ||
+			(((v1 && v5 && v9) == ("x")) || ((v1 && v5 && v9) == ("o"))) ||
+			(((v3 && v5 && v7) == ("x")) || ((v3 && v5 && v7) == ("o")))
+			) {
 			console.log('win found');
 	 } else {
 			console.log('win not found');
-	 }
+	 }*/
 	 
 }
 
