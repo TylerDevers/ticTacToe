@@ -38,34 +38,37 @@ function clicked(text) {
 	if (!gameOn){
 		alert("You Must click Start to begin");
 	} else {
-		if (turn == "user") {
-			if (text.innerHTML == userChoice || text.innerHTML == compChoice) {
-					alert("That space is taken, please choose another.");
-			} else {
-				user(text);
-				computer(text);
-				//use buttonsIndex to somehow determine the computers move.
-			}
+		if (text.innerHTML == userChoice || text.innerHTML == compChoice) {
+				alert("That space is taken, please choose another.");
+		} else {
+			user(text);
+			setTimeout(computer, 1000);
+			//use buttonsIndex to somehow determine the computers move.
 		} 
 	}
 }
 
 
-function user(box) {
+function user(fillBox) {
 	//called by clicked(). handles users move
-	box.innerHTML = userChoice;
-	console.log("user " + userChoice);
+	fillBox.innerHTML = userChoice;
 }
 
 function computer() {
-	//called by clicked(). handles comp move
-	console.log("computer " + compChoice);
+	for (value in buttonsIndex) {
+		if (buttonsIndex[value].innerHTML == "^") {
+			console.log("it has the hat!");
+			buttonsIndex[value].innerHTML = compChoice;
+			break;
+		}		
+	}
+	
 }
 
 console.log('loaded');
 /* TODO
- * clean up clicked(), use other functions for player() comp() to make it readable.
- * add alert to clicked, if game is not on when tiles are clicked. alert 
+ * clean up clicked(), use functions for player() comp() to make it readable.
+ *  
  * make game reset after win condition
  * create game logic
  * make turn automatically switch after move
@@ -95,5 +98,8 @@ console.log('loaded');
  * if (game a draw) {
  * 	stop game, give draw message
  * 	start new game after 5 seconds
+ * }
+ * if (space already used) {
+ * 	alert message;
  * }
  */
