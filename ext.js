@@ -1,4 +1,4 @@
-var buttonsIndex, gameOn, userChoice, compChoice, lastMove;
+var buttonsIndex, gameOn, userChoice, compChoice;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
@@ -32,7 +32,6 @@ function gameReset() {
 			buttonsIndex[i].innerHTML = "^";
 		}
 		resetBtn.className = "btn btn-default";
-		lastMove = undefined;
 		gameOn = false;
 }
 //changes the game tiles to x and o values.
@@ -43,21 +42,20 @@ function clicked(text) {
 		if (text.innerHTML == userChoice || text.innerHTML == compChoice) {
 				alert("That space is taken, please choose another.");
 		} else {
-			user(text);
+			userMove(text);
 			//makes comp "take a moment" to think about move.
-			setTimeout(computer, 1000);
+			setTimeout(computerMove, 1000);
 		} 
 	}
 }
 
-
-function user(fillBox) {
+function userMove(fillBox) {
 	//called by clicked(). handles users move
 	fillBox.innerHTML = userChoice;
 	checkForWin();
 }
 
-function computer() {
+function computerMove() {
 	for (value in buttonsIndex) {
 		if (buttonsIndex[value].innerHTML == "^") {
 			//console.log("it has the hat!");
@@ -78,88 +76,54 @@ function checkForWin() {
 			v5 = buttonsIndex[5].innerHTML,v6 = buttonsIndex[6].innerHTML,
 			v7 = buttonsIndex[7].innerHTML,v8 = buttonsIndex[8].innerHTML,
 			v9 = buttonsIndex[9].innerHTML;
-	 //check user win condition
+			
 		if (v1  == userChoice && v2  == userChoice && v3 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v4 == userChoice && v5 == userChoice && v6 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v7 == userChoice && v8 == userChoice && v9 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v1 == userChoice && v4 == userChoice && v7 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v2 == userChoice && v5 == userChoice && v8 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v3 == userChoice && v6 == userChoice && v9 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v1 == userChoice && v5 == userChoice && v9 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} else if (v3 == userChoice && v5 == userChoice && v7 == userChoice) {
-			console.log("You have won!");
-			
+			setTimeout(youWon, 500);
 		} 
 		
 		//check for computer win condition
 		if (v1  == compChoice && v2  == compChoice && v3 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		} else if (v4 == compChoice && v5 == compChoice && v6 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		} else if (v7 == compChoice && v8 == compChoice && v9 == compChoice) {
-			console.log("You Lost!");
-		} else 
-		if (v1 == compChoice && v4 == compChoice && v7 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
+		} else if (v1 == compChoice && v4 == compChoice && v7 == compChoice) {
+			setTimeout(youLost, 500);
 		} else if (v2 == compChoice && v5 == compChoice && v8 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		} else if (v3 == compChoice && v6 == compChoice && v9 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		} else if (v1 == compChoice && v5 == compChoice && v9 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		} else if (v3 == compChoice && v5 == compChoice && v7 == compChoice) {
-			console.log("You Lost!");
+			setTimeout(youLost, 500);
 		}	 
 }
 
+function youWon() {
+		alert("You Won! Press okay to play again");
+		location.reload();
+}
+
+function youLost() {
+		alert("You Lost! Press okay to play again");
+		location.reload();
+}
 
 console.log('loaded');
-/* TODO
- * stop game when win detected.
- * clean up clicked(), use functions for player() comp() to make it readable.
- *  call reset function after win detected, include message.
- * make game reset after win condition
- */
 
-/* sudo code
- * if (game has not started) {
- * 	user selects character
- * 	user starts game
- * }
- * if (game has started) {
- * 	read users character selection
- * 	set user and computer var appropriately
- * 	allow moves to be made
- * 	allow game to be reset
- * }
- * if (move has been made) {
- * 	switch turn to computer/user
- * 	check for win condition
- * 	check for draw
- * }
- * if (win condition) {
- * 	stop game, congratulate(or not)
- * 	start new game after 5 seconds
- * }
- * if (game a draw) {
- * 	stop game, give draw message
- * 	start new game after 5 seconds
- * }
- * if (space already used) {
- * 	alert message;
- * }
- */
