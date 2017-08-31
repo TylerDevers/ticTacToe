@@ -1,12 +1,11 @@
-var buttonsIndex, gameOn, userChoice, compChoice, turn, lastMove;
+var buttonsIndex, gameOn, userChoice, compChoice, lastMove;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
 
-function start(text) {
-		var classSwitchTo = document.getElementById("start");
+function start(startBtn) {
+		var startBtnChange = document.getElementById("start");
 		userChoice = document.querySelector('#xOrO').value;
-		turn = "user";
 		
 		if (userChoice == "x") {
 			compChoice = "o";
@@ -16,25 +15,28 @@ function start(text) {
 		
 		if (gameOn) {
 			//reset game space
-			text.innerHTML = "Start";
-			for (var i = 1; i<buttonsIndex.length; i++) { 
-				//starts at index 1 to prevent start button from changing.
-				buttonsIndex[i].innerHTML = "^";
-			}
-			classSwitchTo.className = "btn btn-default";
-			lastMove = undefined;
-			gameOn = false;
+			gameReset();
 		} else if (!gameOn) {
 			//begins game, allows for moves
-			text.innerHTML = "Reset";
-			classSwitchTo.className = "btn btn-warning";
+			startBtn.innerHTML = "Reset";
+			startBtnChange.className = "btn btn-warning";
 			gameOn = true;	
 		}
 }
 
-//changes the game tiles to x and y values.
+function gameReset() {
+		var resetBtn = document.querySelector("#start");
+		resetBtn.innerHTML = "Start";
+		for (var i = 1; i<buttonsIndex.length; i++) { 
+			//starts at index 1 to prevent start button text from changing.
+			buttonsIndex[i].innerHTML = "^";
+		}
+		resetBtn.className = "btn btn-default";
+		lastMove = undefined;
+		gameOn = false;
+}
+//changes the game tiles to x and o values.
 function clicked(text) {	
-	var newButtons = [];
 	if (!gameOn){
 		alert("You Must click Start to begin");
 	} else {
@@ -42,8 +44,8 @@ function clicked(text) {
 				alert("That space is taken, please choose another.");
 		} else {
 			user(text);
+			//makes comp "take a moment" to think about move.
 			setTimeout(computer, 1000);
-			//use buttonsIndex to somehow determine the computers move.
 		} 
 	}
 }
@@ -79,20 +81,28 @@ function checkForWin() {
 	 //check user win condition
 		if (v1  == userChoice && v2  == userChoice && v3 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v4 == userChoice && v5 == userChoice && v6 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v7 == userChoice && v8 == userChoice && v9 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v1 == userChoice && v4 == userChoice && v7 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v2 == userChoice && v5 == userChoice && v8 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v3 == userChoice && v6 == userChoice && v9 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v1 == userChoice && v5 == userChoice && v9 == userChoice) {
 			console.log("You have won!");
+			
 		} else if (v3 == userChoice && v5 == userChoice && v7 == userChoice) {
 			console.log("You have won!");
+			
 		} 
 		
 		//check for computer win condition
@@ -102,7 +112,8 @@ function checkForWin() {
 			console.log("You Lost!");
 		} else if (v7 == compChoice && v8 == compChoice && v9 == compChoice) {
 			console.log("You Lost!");
-		} else if (v1 == compChoice && v4 == compChoice && v7 == compChoice) {
+		} else 
+		if (v1 == compChoice && v4 == compChoice && v7 == compChoice) {
 			console.log("You Lost!");
 		} else if (v2 == compChoice && v5 == compChoice && v8 == compChoice) {
 			console.log("You Lost!");
@@ -115,11 +126,12 @@ function checkForWin() {
 		}	 
 }
 
+
 console.log('loaded');
 /* TODO
- * check for win
+ * stop game when win detected.
  * clean up clicked(), use functions for player() comp() to make it readable.
- *  
+ *  call reset function after win detected, include message.
  * make game reset after win condition
  */
 
