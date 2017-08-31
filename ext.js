@@ -52,7 +52,7 @@ function clicked(text) {
 function user(fillBox) {
 	//called by clicked(). handles users move
 	fillBox.innerHTML = userChoice;
-	win();
+	checkForWin();
 }
 
 function computer() {
@@ -60,13 +60,13 @@ function computer() {
 		if (buttonsIndex[value].innerHTML == "^") {
 			//console.log("it has the hat!");
 			buttonsIndex[value].innerHTML = compChoice;
-			win();
+			checkForWin();
 			break;
 		}		
 	}
 }
 
-function win() {
+function checkForWin() {
 	//check for win condition
 	/*win condition: if the values match for buttonsIndex indices :
 	 * 	123, 456, 789, 147, 258, 369, 159, 357
@@ -76,7 +76,7 @@ function win() {
 			v5 = buttonsIndex[5].innerHTML,v6 = buttonsIndex[6].innerHTML,
 			v7 = buttonsIndex[7].innerHTML,v8 = buttonsIndex[8].innerHTML,
 			v9 = buttonsIndex[9].innerHTML;
-	 
+	 //check user win condition
 		if (v1  == userChoice && v2  == userChoice && v3 == userChoice) {
 			console.log("You have won!");
 		} else if (v4 == userChoice && v5 == userChoice && v6 == userChoice) {
@@ -94,23 +94,25 @@ function win() {
 		} else if (v3 == userChoice && v5 == userChoice && v7 == userChoice) {
 			console.log("You have won!");
 		} 
-			
-	
-				
-	 /*if (v1 && v2 && v3) == ("x") || (v1 && v2 && v3) == ("o")) { 
-			(((v4 && v5 && v6) == ("x")) || ((v4 && v5 && v6) == ("o"))) ||
-			(((v7 && v8 && v9) == ("x")) || ((v7 && v8 && v9) == ("o"))) ||
-			(((v1 && v4 && v7) == ("x")) || ((v1 && v4 && v7) == ("o"))) ||
-			(((v2 && v5 && v8) == ("x")) || ((v2 && v5 && v8) == ("o"))) ||
-			(((v3 && v6 && v9) == ("x")) || ((v3 && v6 && v9) == ("o"))) ||
-			(((v1 && v5 && v9) == ("x")) || ((v1 && v5 && v9) == ("o"))) ||
-			(((v3 && v5 && v7) == ("x")) || ((v3 && v5 && v7) == ("o")))
-			) {
-			console.log('win found');
-	 } else {
-			console.log('win not found');
-	 }*/
-	 
+		
+		//check for computer win condition
+		if (v1  == compChoice && v2  == compChoice && v3 == compChoice) {
+			console.log("You Lost!");
+		} else if (v4 == compChoice && v5 == compChoice && v6 == compChoice) {
+			console.log("You Lost!");
+		} else if (v7 == compChoice && v8 == compChoice && v9 == compChoice) {
+			console.log("You Lost!");
+		} else if (v1 == compChoice && v4 == compChoice && v7 == compChoice) {
+			console.log("You Lost!");
+		} else if (v2 == compChoice && v5 == compChoice && v8 == compChoice) {
+			console.log("You Lost!");
+		} else if (v3 == compChoice && v6 == compChoice && v9 == compChoice) {
+			console.log("You Lost!");
+		} else if (v1 == compChoice && v5 == compChoice && v9 == compChoice) {
+			console.log("You Lost!");
+		} else if (v3 == compChoice && v5 == compChoice && v7 == compChoice) {
+			console.log("You Lost!");
+		}	 
 }
 
 console.log('loaded');
