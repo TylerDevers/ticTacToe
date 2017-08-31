@@ -56,13 +56,14 @@ function userMove(fillBox) {
 }
 
 function computerMove() {
-	for (value in buttonsIndex) {
-		if (buttonsIndex[value].innerHTML == "^") {
-			//console.log("it has the hat!");
-			buttonsIndex[value].innerHTML = compChoice;
-			checkForWin();
-			break;
-		}		
+	var randomValue = Math.floor(Math.random()*10);
+	if (buttonsIndex[randomValue].innerHTML == "^") {
+		console.log("it has the hat!");
+		buttonsIndex[randomValue].innerHTML = compChoice;
+		checkForWin();
+	}	else {
+		console.log("comp tries again");
+		computerMove();
 	}
 }
 
