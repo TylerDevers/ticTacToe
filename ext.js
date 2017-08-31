@@ -1,12 +1,14 @@
-var buttonsIndex, gameOn, userChoice, compChoice;
+var buttonsIndex, gameOn, userChoice, compChoice, num;
 
 buttonsIndex = document.getElementsByTagName('a');
 gameOn = false;
+num = 9;
+
 
 function start(startBtn) {
 		var startBtnChange = document.getElementById("start");
 		userChoice = document.querySelector('#xOrO').value;
-		
+		//console.log(num);
 		if (userChoice == "x") {
 			compChoice = "o";
 		} else {
@@ -26,6 +28,8 @@ function start(startBtn) {
 
 function gameReset() {
 		var resetBtn = document.querySelector("#start");
+		num = 9;
+		//console.log(num);
 		resetBtn.innerHTML = "Start";
 		for (var i = 1; i<buttonsIndex.length; i++) { 
 			//starts at index 1 to prevent start button text from changing.
@@ -34,18 +38,20 @@ function gameReset() {
 		resetBtn.className = "btn btn-default";
 		gameOn = false;
 }
+
 //changes the game tiles to x and o values.
 function clicked(text) {	
 	if (!gameOn){
 		alert("You Must click Start to begin");
-	} else {
+	} else {		
 		if (text.innerHTML == userChoice || text.innerHTML == compChoice) {
 				alert("That space is taken, please choose another.");
 		} else {
-			userMove(text);
-			//makes comp "take a moment" to think about move.
-			setTimeout(computerMove, 1000);
-		} 
+				userMove(text);
+				//makes comp "take a moment" to think about move.
+				setTimeout(computerMove, 1000);
+			//setTimeout(draw, 500); 
+		}
 	}
 }
 
@@ -53,16 +59,18 @@ function userMove(fillBox) {
 	//called by clicked(). handles users move
 	fillBox.innerHTML = userChoice;
 	checkForWin();
+	setTimeout(draw,300);
 }
 
 function computerMove() {
 	var randomValue = Math.floor(Math.random()*10);
 	if (buttonsIndex[randomValue].innerHTML == "^") {
-		console.log("it has the hat!");
+		//console.log("it has the hat!");
 		buttonsIndex[randomValue].innerHTML = compChoice;
 		checkForWin();
+		setTimeout(draw,300);
 	}	else {
-		console.log("comp tries again");
+		//console.log("comp tries again");
 		computerMove();
 	}
 }
@@ -126,5 +134,14 @@ function youLost() {
 		location.reload();
 }
 
-console.log('loaded');
+function draw() {
+	//console.log(num);
+	num--;
+	if (num < 1) {
+		alert("It was a draw!! Press okay to play again");
+		location.reload();
+	}
+	
+}
+//console.log('loaded');
 
